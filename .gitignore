@@ -132,3 +132,4 @@ dist
 
 # FavHub Node Modules
 node_modules/
+package-lock.json

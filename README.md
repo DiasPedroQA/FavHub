@@ -1,3 +1,4 @@
+
 # FavHub
 
 Bem-vindo ao FavHub, sua solução abrangente para organizar e otimizar seus links favoritos exportados de diversos navegadores!
@@ -40,6 +41,7 @@ Instale as dependências mínimas necessárias para a estrutura do projeto web:
 
 ```bash
 npm install node
+npm install sqlite3
 ```
 
 ## Uso
@@ -51,6 +53,10 @@ npm test
 ```
 
 Isso garantirá que todas as funcionalidades estejam operacionais antes de utilizar o FavHub.
+
+## Banco de Dados
+
+O FavHub utiliza SQLite3 como banco de dados para armazenar seus links favoritos. Após cada exportação, os links são salvos no banco de dados para controle futuro.
 
 ## Contribuições
 
