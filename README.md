@@ -30,7 +30,7 @@ Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em seu sistema.
 ### 2. Clonar o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/favhub.git
+git clone https://github.com/DiasPedroQA/FavHub.git
 cd favhub
 ```
 
