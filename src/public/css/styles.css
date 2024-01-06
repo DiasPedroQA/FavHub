@@ -1,0 +1,27 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif; /* Adicione a fonte desejada aqui */
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.file-input {
+    margin-bottom: 10px;
+}
+
+.file-display {
+    height: 200px;
+    overflow-y: auto;
+}
