@@ -9,19 +9,21 @@
 
 /* Custom Styles */
 body {
-    background-color: #f8f9fa;
-    font-family: 'Arial', sans-serif; /* Adicione a fonte desejada aqui */
+    background-color: #ffe4b5; /* Mude a cor de fundo conforme desejado */
 }
-
 .container {
     margin-top: 50px;
 }
-
 .file-input {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-
 .file-display {
-    height: 200px;
-    overflow-y: auto;
+    /* Remova height e overflow-y para permitir que a div se ajuste ao conteúdo */
+    background-color: #add8e6; /* Mude a cor de fundo conforme desejado */
+    padding: 10px;
+    border-radius: 5px;
+}
+.submit-btn {
+    background-color: #5cb85c; /* Mude a cor de fundo conforme desejado */
+    color: #fff;
 }
