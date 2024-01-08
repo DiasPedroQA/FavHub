@@ -2,8 +2,59 @@ const formatDate = timestamp => {
     return timestamp ? new Date(parseInt(timestamp) * 1000).toLocaleString('pt-BR') : 'Data inválida';
 };
 
-const generateRandomId = () => {
-    return Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+const lerTags = (html) => {
+    const body = html.querySelector('body');
+    const dl = body.querySelector('dl');
+    const allTags = dl.querySelectorAll('*');
+    return allTags;
+};
+
+const processTags = (tags) => {
+    const jsonResult = {};
+    let tagContent = null;
+
+    tags.forEach(tag => {
+        const tagName = tag.tagName.toLowerCase();
+        tagContent = tag.textContent.trim();
+        
+        console.log('<tag>:', tag)
+        let dt = tag.querySelector('dt');
+        console.log('tem dt:', dt)
+
+        /*if (tagName === 'h3') {
+            tagContent = tag.textContent.trim();
+            h3Values = {
+                h3Data: {
+                    'add_date': formatDate(tag.getAttribute('add_date')),
+                    'last_modified': formatDate(tag.getAttribute('last_modified'))
+                },
+                links: {}
+            }
+            jsonResult[tagContent] = h3Values;
+            console.log('jsonResult:', jsonResult);
+        } else if (tagName === 'a' && tagContent !== null) {
+            const aValues = {
+                'name': tag.textContent.trim(),
+                'href': tag.getAttribute('href'),
+                'add_date': formatDate(tag.getAttribute('add_date')),
+                'last_modified': formatDate(tag.getAttribute('last_modified')),
+            };
+            console.log('aValues:', aValues)
+            jsonResult[tagContent][h3Values][links].push(aValues);
+        }*/
+    });
+
+    return jsonResult;
+};
+
+const processFile = (content, display) => {
+    const html = new DOMParser().parseFromString(content, 'text/html');
+    if (html) {
+        const documento = lerTags(html);
+        const tags = documento ? [...documento] : [];
+        const jsonResult = processTags(tags);
+        display.innerHTML = JSON.stringify(jsonResult, null, 4);
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,53 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = input.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function (e) {
-                showContent(e.target.result, display);
-            };
+            reader.onload = (e) => { processFile(e.target.result, display); };
             reader.readAsText(file);
         }
     });
 });
-
-const findDlParentAfterH1 = h1 => {
-    let nextElement = h1.nextElementSibling;
-    while (nextElement && nextElement.tagName.toLowerCase() !== 'dl') {
-        nextElement = nextElement.nextElementSibling;
-    }
-    return nextElement && nextElement.tagName.toLowerCase() === 'dl' ? nextElement : null;
-};
-
-const showContent = (content, display) => {
-    const doc = new DOMParser().parseFromString(content, 'text/html');
-    const h1 = doc.querySelector('h1');
-
-    if (h1) {
-        const dlParent = findDlParentAfterH1(h1);
-        const tags = dlParent ? [...dlParent.children] : [];
-        const jsonResult = processTags(tags);
-        display.innerHTML = JSON.stringify(jsonResult, null, 4);
-    }
-};
-
-const processTags = tags => {
-    const jsonResult = {};
-    let currentKey = null;
-
-    tags.forEach(tag => {
-        const tagName = tag.tagName.toLowerCase();
-        if (tagName === 'dt') {
-            currentKey = tag.textContent.trim();
-            jsonResult[currentKey] = [];
-        } else if (tagName === 'a' && currentKey !== null) {
-            const value = {
-                text: tag.textContent.trim(),
-                href: tag.getAttribute('href'),
-                add_date: formatDate(tag.getAttribute('add_date')),
-                last_modified: formatDate(tag.getAttribute('last_modified')),
-            };
-            jsonResult[currentKey].push(value);
-        }
-    });
-    return jsonResult;
-};
-

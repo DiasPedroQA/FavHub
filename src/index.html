@@ -9,29 +9,24 @@
     <link rel="stylesheet" href="public/css/styles.css">
 </head>
 
-<body class="bg-secondary text-white">
+<body class="bg-dark text-white">
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h1 class="mb-3">File Reader App</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget tellus at elit euismod dapibus
-                    vitae vel tortor.</p>
+        <h1 class="mb-3">File Reader App</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla eget tellus at elit euismod dapibus vitae vel tortor.</p>
 
-                <form id="fileForm">
-                    <div class="file-input">
-                        <label for="fileInput" class="form-label">Escolha um arquivo:</label>
-                        <input type="file" class="form-control" id="fileInput" accept=".html">
-                    </div>
-                </form>
-
+        <form id="fileForm">
+            <div class="file-input">
+                <label for="fileInput" class="form-label">Escolha um arquivo:</label>
+                <input type="file" class="form-control" id="fileInput" accept=".html">
             </div>
+        </form>
 
-            <div class="col-md-6">
-                <h5>Conteúdo do arquivo:</h5>
-                <div class="file-display">
-                    <pre id="displayArea"></pre>
-                </div>
+        <div class="text-danger">
+            <h3>Conteúdo do arquivo:</h3>
+            <div class="file-display bg-secondary">
+                <pre id="displayArea"></pre>
             </div>
         </div>
     </div>
